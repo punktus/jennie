@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jennie</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color1: #FFD166;
+            --color2: #06D6A0;
+            --color3: #118AB2;
+            --color4: #073B4C;
+            --main-color: #EF476F;
+            --text-color: #fff;
+
+            /* CSS HEX */
+            --imperial-red: #f94144ff;
+            --orange-crayola: #f3722cff;
+            --carrot-orange: #f8961eff;
+            --coral: #f9844aff;
+            --saffron: #f9c74fff;
+            --pistachio: #90be6dff;
+            --zomp: #43aa8bff;
+            --dark-cyan: #4d908eff;
+            --paynes-gray: #577590ff;
+            --cerulean: #277da1ff;
+            
+            /* CSS HSL */
+            --imperial-red: hsla(359, 94%, 62%, 1);
+            --orange-crayola: hsla(21, 89%, 56%, 1);
+            --carrot-orange: hsla(33, 94%, 55%, 1);
+            --coral: hsla(20, 94%, 63%, 1);
+            --saffron: hsla(42, 93%, 64%, 1);
+            --pistachio: hsla(94, 38%, 59%, 1);
+            --zomp: hsla(162, 43%, 46%, 1);
+            --dark-cyan: hsla(178, 30%, 43%, 1);
+            --paynes-gray: hsla(208, 25%, 45%, 1);
+            --cerulean: hsla(198, 61%, 39%, 1);
+        }
+
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            background-color: var(--cerulean);
+            color: var(--text-color);
+            padding: 2em 3em;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        table {
+            width: 100%;
+            background-color: var(--paynes-gray);
+            border-collapse: collapse;
+        }
+
+        td, th {
+            padding: 6px;
+        }
+
+        th {
+            text-transform: capitalize;
+            text-align: left;
+            border-bottom: 1px solid;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--dark-cyan);
+        }
+
+        tr:hover {
+            background-color: var(--zomp);
+        }
+
+        tfoot td {
+            border-top: 1px solid;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 1em;
+            left: 1em;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="page-title"></h1>
+    </header>
+    <main id="main"></main>
+    <footer id="footer" class="footer"></footer>
+
+    <script>
+
+        const settings = {
+            txt: {
+                pageTitle: 'Jennie - klassmamma',
+                footerText: 'Sidfot är mega',
+                save: 'Spara',
+                update: 'Uppdatera',
+                add: 'Lägg till'
+            }
+        }
+
+        let mountains = [
+            { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
+            { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
+            { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
+            { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
+            { name: "Monte Amiata", height: 1738, place: "Siena" }
+        ];
+
+        // --- ELEMENTS --
+        const pageTitleEl = document.getElementById('page-title');
+        const mainEl = document.getElementById('main');
+        const footerEl = document.getElementById('footer');
+
+
+        function generateTable(data) {
+            
+            let thead = '';            
+            let tbody = '';
+            let tfoot = '';
+
+
+            // thead
+            let ths = '';
+            for (let key of Object.keys(data[0])) {
+                ths += `<th>${key}</th>`; 
+            }
+            ths += `<th>${settings.txt.save}</th>`; 
+            thead += `<thead><tr>${ths}</tr></thead>`;
+
+            
+            // tbody
+            for (let element of data) {
+
+                let tds = '';
+                
+                for (key in element) {
+                    tds += `<td>${element[key]}</td>`;
+                }
+                tds += `<td><button class="update-btn" disabled>${settings.txt.update}</button</td>`;
+
+                tbody += `<tr>${tds}</tr>`;
+            }
+
+
+            // tfoot
+            tfoot += `<tfoot><tr><td colspan="${Object.keys(mountains[0]).length + 1}"><button class="add-btn">${settings.txt.add}</button></td></tr></tfoot>`;
+
+
+            // Update html
+            mainEl.innerHTML = `<table>${thead}<tbody>${tbody}</tbody>${tfoot}</table>`;
+        }
+
+        //
+        function setTexts() {
+            pageTitleEl.innerHTML = settings.txt.pageTitle;
+            footerEl.innerHTML = settings.txt.footerText;
+        }
+
+
+        // --- Call functions --
+
+        //
+        setTexts();
+        generateTable(mountains);
+
+    </script>
+</body>
+</html>
