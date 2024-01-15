@@ -100,6 +100,10 @@
 
     <script>
 
+        //
+        let settings = {};
+        let data = [];
+
         // --- ELEMENTS --
         const pageTitleEl = document.getElementById('page-title');
         const mainEl = document.getElementById('main');
@@ -183,7 +187,10 @@
                     fetch('data.json', { headers: { 'Accept': 'application/json' } })
                 ]);
 
-                const [settings, data] = await Promise.all(responsesJSON.map(r => r.json()));
+                const [settingsRes, dataRes] = await Promise.all(responsesJSON.map(r => r.json()));
+
+                settings = settingsRes;
+                data = dataRes;
 
                 setTexts();
                 generateTable(data);
