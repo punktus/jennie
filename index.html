@@ -47,7 +47,7 @@
 
         body {
             font-family: 'Titillium Web', sans-serif;
-            background-color: var(--cerulean);
+            background-color: var(--pistachio);
             color: var(--text-color);
             padding: 2em 3em;
             font-size: 16px;
@@ -71,7 +71,7 @@
         }
 
         tr:nth-child(even) {
-            background-color: var(--dark-cyan);
+            background-color: var(--cerulean);
         }
 
         tr:hover {
@@ -100,7 +100,7 @@
 
     <script>
 
-        //
+        // --- VARIABLES ---
         let settings = {};
         let data = [];
 
@@ -148,37 +148,13 @@
             mainEl.innerHTML = `<table>${thead}<tbody>${tbody}</tbody>${tfoot}</table>`;
         }
 
-        // Set page header & footer texts
+        // Render page header & footer texts
         function setTexts() {
             pageTitleEl.innerHTML = settings.txt.pageTitle;
             footerEl.innerHTML = settings.txt.footerText;
         }
 
-        //// get settings then display result
-        //async function getSettings() {
-        //    fetch('settings.json', { headers: { 'Accept': 'application/json' } })
-        //        .then(response => response.json())
-        //        .then(responseJson => {
-        //            settings = responseJson;
-        //            setTexts();
-        //        });
-        //}
-
-        //// get data then display result
-        //async function getData() {
-
-
-        //    fetch('data.json', { headers: { 'Accept': 'application/json' } })
-        //        .then(response => response.json())
-        //        .then(responseJson => {
-        //            generateTable(responseJson);
-        //        }
-        //        );
-
-
-        //    const responses = await Promise.all([fetch(url1), fetch(url2)])
-        //}
-
+        //
         const fetchData = async () => {
             try {
 
@@ -201,59 +177,8 @@
             }
         };
 
+        //
         fetchData();
-
-        //Promise.all(array)
-        //    .then(responses => {
-        //        return Promise.all(responses.map(response => response.json()))
-        //            .then(data => {
-        //                console.log(data); // Array(3) [ (100) […], (500) […], (5000) […] ]
-        //            })
-        //    })
-        //    .catch(err => console.error("Multiple fetch failed"));
-
-        /*
-        async function makeRequests() {
-
-            const array = [
-                fetch('data.json', { headers: { 'Accept': 'application/json' } }),
-                fetch('settings.json', { headers: { 'Accept': 'application/json' } })
-            ];
-
-            try {
-
-                const responses = await Promise.allSettled(array);
-
-                // Handles array of fetch requests with Promise.allSettled()
-                const successArray = [];
-
-                responses.map(response => {
-                    if (response.status === "fulfilled") {
-                        successArray.push(response);
-                    }
-                });
-
-                // Pushes only successfully fulfilled responses into successArray
-                const data = await Promise.allSettled(successArray.map(response => response.value.json()));
-
-                // Reads readable stream on body of responses in successArray to JS object (from JSON)
-                data.forEach(obj => output.textContent += JSON.stringify(obj.value));
-
-            } catch {
-                console.error("Multiple fetch failed");
-            }
-        }
-
-        makeRequests()
-*/
-
-
-
-
-
-        // --- Call functions --
-        //getSettings();
-        //getData();
 
     </script>
 </body>
