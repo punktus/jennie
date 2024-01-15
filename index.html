@@ -110,13 +110,6 @@
             }
         }
 
-        let mountains = [
-            { name: "Monte Falco", height: 1658, place: "Parco Foreste Casentinesi" },
-            { name: "Monte Falterona", height: 1654, place: "Parco Foreste Casentinesi" },
-            { name: "Poggio Scali", height: 1520, place: "Parco Foreste Casentinesi" },
-            { name: "Pratomagno", height: 1592, place: "Parco Foreste Casentinesi" },
-            { name: "Monte Amiata", height: 1738, place: "Siena" }
-        ];
 
         // --- ELEMENTS --
         const pageTitleEl = document.getElementById('page-title');
@@ -125,7 +118,8 @@
 
 
         function generateTable(data) {
-            
+            console.log('generateTable', data);
+
             let thead = '';            
             let tbody = '';
             let tfoot = '';
@@ -168,17 +162,25 @@
             footerEl.innerHTML = settings.txt.footerText;
         }
 
+        //
+        async function loadData() {
+
+            fetch('data.json', { headers: { 'Accept': 'application/json' } })
+                .then(response => response.json())
+                .then(responseJson => {
+                    generateTable(responseJson)
+                })
+        }
+
 
         // --- Call functions --
 
         //
         setTexts();
+        loadData();
         //generateTable(mountains);
 
-        fetch('data.json').then(response => response.json())
-            .then(responseJson => {
-                console.log('yes', responseJson)
-            })
+
 
         
 
