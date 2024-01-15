@@ -150,30 +150,49 @@
             footerEl.innerHTML = settings.txt.footerText;
         }
 
-        // get settings then display result
-        async function getSettings() {
-            fetch('settings.json', { headers: { 'Accept': 'application/json' } })
-                .then(response => response.json())
-                .then(responseJson => {
-                    settings = responseJson;
-                    setTexts();
-                });
-        }
+        //// get settings then display result
+        //async function getSettings() {
+        //    fetch('settings.json', { headers: { 'Accept': 'application/json' } })
+        //        .then(response => response.json())
+        //        .then(responseJson => {
+        //            settings = responseJson;
+        //            setTexts();
+        //        });
+        //}
 
-        // get data then display result
-        async function getData() {
-
-
-            fetch('data.json', { headers: { 'Accept': 'application/json' } })
-                .then(response => response.json())
-                .then(responseJson => {
-                    generateTable(responseJson);
-                }
-                );
+        //// get data then display result
+        //async function getData() {
 
 
-            const responses = await Promise.all([fetch(url1), fetch(url2)])
-        }
+        //    fetch('data.json', { headers: { 'Accept': 'application/json' } })
+        //        .then(response => response.json())
+        //        .then(responseJson => {
+        //            generateTable(responseJson);
+        //        }
+        //        );
+
+
+        //    const responses = await Promise.all([fetch(url1), fetch(url2)])
+        //}
+
+        const fetchData = async () => {
+            try {
+
+                const responsesJSON = await Promise.all([
+                    fetch('settings.json', { headers: { 'Accept': 'application/json' } }),
+                    fetch('data.json', { headers: { 'Accept': 'application/json' } })
+                ]);
+
+                const [todoOne, todoTwo] = await Promise.all(responsesJSON.map(r => r.json()));
+                console.log(todoOne, 'todoOne');
+                console.log(todoTwo, 'todoTwo');
+            } catch (err) {
+                throw err;
+            }
+        };
+
+        fetchData();
+
         //Promise.all(array)
         //    .then(responses => {
         //        return Promise.all(responses.map(response => response.json()))
@@ -183,7 +202,7 @@
         //    })
         //    .catch(err => console.error("Multiple fetch failed"));
 
-
+        /*
         async function makeRequests() {
 
             const array = [
@@ -215,9 +234,10 @@
             }
         }
 
-
-
         makeRequests()
+*/
+
+
 
 
 
