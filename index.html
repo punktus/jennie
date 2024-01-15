@@ -183,9 +183,12 @@
                     fetch('data.json', { headers: { 'Accept': 'application/json' } })
                 ]);
 
-                const [todoOne, todoTwo] = await Promise.all(responsesJSON.map(r => r.json()));
-                console.log(todoOne, 'todoOne');
-                console.log(todoTwo, 'todoTwo');
+                const [settings, data] = await Promise.all(responsesJSON.map(r => r.json()));
+
+                setTexts();
+                generateTable(data);
+                
+
             } catch (err) {
                 throw err;
             }
