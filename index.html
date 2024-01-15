@@ -173,7 +173,14 @@
 
         //
         setTexts();
-        generateTable(mountains);
+        //generateTable(mountains);
+
+        fetch('data.json').then(response => response.json())
+            .then(responseJson => {
+                console.log('yes', responseJson)
+            })
+
+        
 
     </script>
 </body>
