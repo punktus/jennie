@@ -188,7 +188,6 @@
 
             const array = [
                 fetch('data.json', { headers: { 'Accept': 'application/json' } }),
-                Promise.reject(), // Simulates first fetch failing immediately
                 fetch('settings.json', { headers: { 'Accept': 'application/json' } })
             ];
 
