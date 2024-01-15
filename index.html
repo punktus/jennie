@@ -116,7 +116,7 @@
         const mainEl = document.getElementById('main');
         const footerEl = document.getElementById('footer');
 
-
+        // Render table from data
         function generateTable(data) {
             console.log('generateTable', data);
 
@@ -149,27 +149,27 @@
 
 
             // tfoot
-            tfoot += `<tfoot><tr><td colspan="${Object.keys(mountains[0]).length + 1}"><button class="add-btn">${settings.txt.add}</button></td></tr></tfoot>`;
+            tfoot += `<tfoot><tr><td colspan="${Object.keys(data[0]).length + 1}"><button class="add-btn">${settings.txt.add}</button></td></tr></tfoot>`;
 
 
             // Update html
             mainEl.innerHTML = `<table>${thead}<tbody>${tbody}</tbody>${tfoot}</table>`;
         }
 
-        //
+        // Set page header & footer texts
         function setTexts() {
             pageTitleEl.innerHTML = settings.txt.pageTitle;
             footerEl.innerHTML = settings.txt.footerText;
         }
 
-        //
+        // Load then diaplay data
         async function loadData() {
 
             fetch('data.json', { headers: { 'Accept': 'application/json' } })
                 .then(response => response.json())
                 .then(responseJson => {
-                    generateTable(responseJson)
-                })
+                    generateTable(responseJson);
+                });
         }
 
 
@@ -178,11 +178,6 @@
         //
         setTexts();
         loadData();
-        //generateTable(mountains);
-
-
-
-        
 
     </script>
 </body>
