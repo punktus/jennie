@@ -253,12 +253,10 @@
         document.addEventListener("change", function (e) {
             if (e.target) {
 
-                console.log(e.target, e.target.dataset.orgValue, e.target.value, e.target.closest('tr'));
+                console.log(e.target, e.target.dataset.orgValue, e.target.value);
 
                 if (e.target.dataset.orgValue !== e.target.value) {
                     const row = e.target.closest('tr');
-                    const id = row.dataset.id;
-                    console.log('update row ', e.target.value, id);
                     const updateBtn = row.querySelector('.update-btn');
                     updateBtn.removeAttribute('disabled');
                 }
