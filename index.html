@@ -259,6 +259,8 @@
                     const row = e.target.closest('tr');
                     const id = row.dataset.id;
                     console.log('update row ', e.target.value, id);
+                    const updateBtn = row.querySelector('.update-btn');
+                    updateBtn.removeAttribute('disabled');
                 }
             }            
         });
