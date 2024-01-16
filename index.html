@@ -105,9 +105,14 @@
     <script>
 
         // --- VARIABLES ---
-        let settings = {};
-        let data = [];
-        let systems = {};
+        const app = {
+            settings: {},
+            data: [],
+            systems: []
+        };
+        //let settings = {};
+        //let data = [];
+        //let systems = {};
 
         // --- ELEMENTS --
         const pageTitleEl = document.getElementById('page-title');
@@ -126,23 +131,23 @@
             let ths = '';
 
             // data
-            for (let key of Object.keys(data[0])) {
+            for (let key of Object.keys(app.data[0])) {
                 ths += `<th>${key}</th>`; 
             }
 
             // System
-            for (let system of systems.systems) {
+            for (let system of app.systems) {
                 ths += `<th>${system.name}</th>`; 
             }
 
-            ths += `<th>${settings.txt.save}</th>`; 
+            ths += `<th>${app.settings.txt.save}</th>`; 
             thead += `<thead><tr>${ths}</tr></thead>`;
 
 
 
 
             // tbody
-            for (let element of data) {
+            for (let element of app.data) {
 
                 let tds = '';
 
@@ -152,23 +157,25 @@
                 }
 
                 // system
-                for (let system of systems.systems) {
+                for (let system of app.systems) {
                     let options = '';
 
+                    //
                     for (let option of system.values) {
                         options += `<option>${option}</option>`;
                     }
+
                     tds += `<td><select>${options}</select></td>`;
                 }
 
-                tds += `<td><button class="update-btn" disabled>${settings.txt.update}</button</td>`;
+                tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
                 tbody += `<tr>${tds}</tr>`;
             }
 
 
             // tfoot
-            const colspan = Object.keys(data[0]).length + 1 + systems.systems.length;
-            tfoot += `<tfoot><tr><td colspan="${colspan}"><button class="add-btn">${settings.txt.add}</button></td></tr></tfoot>`;
+            const colspan = Object.keys(app.data[0]).length + app.systems.length + 1;
+            tfoot += `<tfoot><tr><td colspan="${colspan}"><button class="add-btn">${app.settings.txt.add}</button></td></tr></tfoot>`;
 
 
             // Update html
@@ -177,8 +184,8 @@
 
         // Render page header & footer texts
         function setTexts() {
-            pageTitleEl.innerHTML = settings.txt.pageTitle;
-            footerEl.innerHTML = settings.txt.footerText;
+            pageTitleEl.innerHTML = app.settings.txt.pageTitle;
+            footerEl.innerHTML = app.settings.txt.footerText;
         }
 
         //
@@ -193,13 +200,12 @@
 
                 const [settingsRes, dataRes, systemsRes] = await Promise.all(responsesJSON.map(r => r.json()));
 
-
-                settings = settingsRes;
-                data = dataRes;
-                systems = systemsRes;
+                app.settings = settingsRes;
+                app.data = dataRes;
+                app.systems = systemsRes;
 
                 setTexts();
-                generateTable(data);
+                generateTable();
                 
             } catch (err) {
                 throw err;

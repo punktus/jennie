@@ -1,12 +1,10 @@
-{
-  "systems": [
-    {
-      "name": "sys1",
-      "values": ["kiwi", "pineapple", "mango"]
-    },
-    {
-      "name": "sys2",
-      "values": [ "Volvo", "BMW", "Ford", "Mazda"]
-    }
-  ]
-}
+[
+  {
+    "name": "sys1",
+    "values": [ "kiwi", "pineapple", "mango" ]
+  },
+  {
+    "name": "sys2",
+    "values": [ "Volvo", "BMW", "Ford", "Mazda" ]
+  }
+]
