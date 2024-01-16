@@ -136,7 +136,7 @@
 
             // data
             for (let key of app.structure) {
-                ths += `<th>${key.name}</th>`;
+                ths += `<th title="${key.description}">${key.name}</th>`;
             }
 
             ths += `<th>${app.settings.txt.save}</th>`;
@@ -188,7 +188,7 @@
 
         //
         function renderInput(setting, value) {
-            console.log('\t\t renderInput', setting, value);
+            //console.log('\t\t renderInput', setting, value);
 
             // Integer
             if (setting.type === 'int') {
