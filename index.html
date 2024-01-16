@@ -188,7 +188,13 @@
         }
 
         function renderInput(setting, value) {
-            return `<input type="text" value="${value}">`;
+            console.log('\t\t renderInput', setting, value);
+
+            if (setting.type === 'string') {
+                return `<input type="text" value="${value}">`;
+            } else { 
+                return `<input type="text" value="${value}">`;
+            }
         }
 
         // Render page header & footer texts
