@@ -234,7 +234,6 @@
             return `<tfoot><tr>${tds}<td colspan="2"><button class="add-btn" disabled>${app.settings.txt.add}</button></td></tr></tfoot>`;
         }
 
-
         // Render page header & footer texts
         function setTexts() {
             pageTitleEl.innerHTML = app.settings.txt.pageTitle;
@@ -285,10 +284,22 @@
 
                 //console.log(e.target, e.target.dataset.orgValue, e.target.value);
 
-                if (e.target.dataset.orgValue !== e.target.value) {
+                //
+                if (e.target.dataset.orgValue && e.target.dataset.orgValue !== e.target.value) {
+
                     const row = e.target.closest('tr');
                     const updateBtn = row.querySelector('.update-btn');
-                    updateBtn.removeAttribute('disabled');
+                    const addBtn = row.querySelector('.add-btn');
+
+                    //
+                    if (updateBtn) {
+                        updateBtn.removeAttribute('disabled');
+                    }
+
+                    //
+                    else if (addBtn) {
+                        addBtn.removeAttribute('disabled');
+                    }
                 }
             }            
         });
