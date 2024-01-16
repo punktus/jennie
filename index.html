@@ -223,7 +223,9 @@
                 console.log(e.target, e.target.dataset.orgValue, e.target.value, e.target.closest('tr'));
 
                 if (e.target.dataset.orgValue !== e.target.value) {
-                    console.log('update row ', e.target.value);
+                    const row = e.target.closest('tr');
+                    const id = row.dataset.id;
+                    console.log('update row ', e.target.value, id);
                 }
             }            
         });
