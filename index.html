@@ -185,7 +185,7 @@
             //}
 
             // data
-            for (key in element.data) {
+            for (key of element.data) {
                 tds += renderCell(key);
             }
 
@@ -201,6 +201,8 @@
         //
         function renderCell(el) {
             console.log('\t renderCell', el);
+            const ddd = app.structure.find(setting => setting.id === structureId) || { challengeId: challengeId, status: 0 };
+
             return `<td>q</td>`;
         }
 
