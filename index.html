@@ -163,10 +163,7 @@
 
             let tds = '';
 
-            // data
-            //for (key of element.data) {
-            //    tds += renderCell(key);
-            //}
+            // data            
             for (let setting of app.structure) {
                 tds += renderCell(setting, element);
             }
@@ -181,7 +178,7 @@
 
         //
         function renderCell(setting, element) {
-            console.log('\t renderCell', setting, element);
+            //console.log('\t renderCell', setting, element);
 
             const data = element.data.find(val => val.structureId === setting.id);
             const input = renderInput(setting, data.value);
@@ -212,7 +209,7 @@
                 }).join('');
 
                 // No value => add empty option
-                if (!value) {
+                if (typeof value === "string" && value.length === 0) {
                     options = `<option selected disabled>${app.settings.txt.select}</option>` + options;
                 }
 
@@ -272,6 +269,7 @@
         // update Row
         function updateRow(rowId) {
             console.log('updateRow', rowId);
+            //fetch('data.json', { headers: { 'Accept': 'application/json' } }),
         }
 
         //
