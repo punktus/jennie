@@ -166,25 +166,6 @@
             let tds = '';
 
             // data
-            //for (key in element) {
-            //    tds += `<td><input type="text" data-org-value="${element[key]}" value="${element[key]}" /></td>`;
-            //}
-
-
-            //// system
-            //for (let system of app.systems) {
-            //    let options = '';
-
-            //    //
-            //    for (let option of system.values) {
-            //        options += `<option>${option}</option>`;
-            //    }
-
-            //    //
-            //    tds += `<td><select data-org-value="${system.values[0]}">${options}</select></td>`;
-            //}
-
-            // data
             for (key of element.data) {
                 tds += renderCell(key);
             }
@@ -201,8 +182,8 @@
         //
         function renderCell(el) {
             console.log('\t renderCell', el);
-            const ddd = app.structure.find(setting => setting.id === structureId) || { challengeId: challengeId, status: 0 };
-
+            const ddd = app.structure.find(setting => setting.id === el.structureId);// || { challengeId: challengeId, status: 0 };
+            console.log('ddd', ddd);
             return `<td>q</td>`;
         }
 
