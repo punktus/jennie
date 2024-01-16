@@ -78,7 +78,7 @@
             background-color: var(--cerulean);
         }
 
-        tr:hover {
+        tbody tr:hover {
             background-color: var(--zomp);
         }
 
@@ -148,7 +148,7 @@
 
                 // data
                 for (key in element) {
-                    tds += `<td>${element[key]}</td>`;
+                    tds += `<td><span>${element[key]}<span><input type="text" value="${element[key]}" disabled /></td>`;
                 }
 
                 // system
