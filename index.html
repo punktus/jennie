@@ -162,6 +162,7 @@
         //
         function renderRow(element) {
             console.log('renderRow', element);
+
             let tds = '';
 
             // data
@@ -184,7 +185,7 @@
             //}
 
             // data
-            for (key in element) {
+            for (key in element.data) {
                 tds += renderCell(key);
             }
 
