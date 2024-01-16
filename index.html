@@ -161,7 +161,7 @@
                 tds += `<td>${input}</td>`;
             }
 
-            return `<tfoot><tr>${tds}<td colspan="2"><button class="add-btn">${app.settings.txt.add}</button></td></tr></tfoot>`;
+            return `<tfoot><tr>${tds}<td colspan="2"><button class="add-btn" disabled>${app.settings.txt.add}</button></td></tr></tfoot>`;
         }
 
         //
@@ -207,10 +207,16 @@
 
             // select / dropdown
             else if (setting.type === 'select') {
+
                 let options = setting.values.map(val => {
                     const selected = val.key === value ? 'selected' : '';
                     return `<option ${selected} value="${val.key}">${val.value}</option>`;
                 }).join('');
+
+                // No value => add empty option
+                if (!value) {
+                    options = `<option selected disabled>${app.settings.txt.select}</option>` + options;
+                }
 
                 return `<select data-id="${setting.id}" data-org-value="${value}" title="${setting.description}">${options}</select>`;
             }

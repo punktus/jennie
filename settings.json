@@ -5,6 +5,7 @@
     "save": "Spara",
     "update": "Uppdatera",
     "add": "Lägg till",
-    "duplicate": "Duplicera"
+    "duplicate": "Duplicera",
+    "select":  "Välj"
   }
 }
