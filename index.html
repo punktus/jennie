@@ -147,7 +147,7 @@
 
         //
         function renderTableBody() {
-            const rows = '';
+            let rows = '';
 
             // tbody
             for (let element of app.data) {
@@ -155,18 +155,6 @@
             }
 
             return `<tbody>${rows}</tbody>`;
-        }
-
-        //
-        function renderTableFooter() {
-            let tds = '';
-
-            for (let key of app.structure) {
-                const input = renderInput(key, '');
-                tds += `<td>${input}</td>`;
-            }
-
-            return `<tfoot><tr>${tds}<td colspan="2"><button class="add-btn" disabled>${app.settings.txt.add}</button></td></tr></tfoot>`;
         }
 
         //
@@ -197,6 +185,7 @@
             return `<td>${input}</td>`;
         }
 
+        //
         function renderInput(setting, value) {
             //console.log('\t\t renderInput', setting, value);
 
@@ -231,6 +220,19 @@
                 return `<input type="text" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
             }
         }
+
+        //
+        function renderTableFooter() {
+            let tds = '';
+
+            for (let key of app.structure) {
+                const input = renderInput(key, '');
+                tds += `<td>${input}</td>`;
+            }
+
+            return `<tfoot><tr>${tds}<td colspan="2"><button class="add-btn" disabled>${app.settings.txt.add}</button></td></tr></tfoot>`;
+        }
+
 
         // Render page header & footer texts
         function setTexts() {
