@@ -164,7 +164,8 @@
             let tds = '';
 
             for (let key of app.structure) {
-                tds += `<td>${key.name}</td>`;
+                const input = renderInput(key, '');
+                tds += `<td>${input}</td>`;
             }
 
             return `<tfoot><tr>${tds}<td colspan="2"><button class="add-btn">${app.settings.txt.add}</button></td></tr></tfoot>`;
