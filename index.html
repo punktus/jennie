@@ -109,7 +109,6 @@
         const app = {
             settings: {},
             data: [],
-            //systems: [],
             structure: []
         };
 
@@ -121,22 +120,11 @@
         // Render table from data
         function generateTable() {
 
-            let thead = '';            
+            const thead = renderTableHeader();            
             let tbody = '';
-            let tfoot = renderTableFooter();
+            const tfoot = renderTableFooter();
 
 
-            // thead
-            let ths = '';
-
-            // data
-            for (let key of app.structure) {
-                ths += `<th>${key.name}</th>`;
-            }
-
-            ths += `<th>${app.settings.txt.save}</th>`; 
-            ths += `<th>${app.settings.txt.duplicate}</th>`; 
-            thead += `<thead><tr>${ths}</tr></thead>`;
 
 
 
@@ -150,6 +138,23 @@
 
             // Update html
             mainEl.innerHTML = `<table>${thead}<tbody>${tbody}</tbody>${tfoot}</table>`;
+        }
+
+        // Table Header
+        function renderTableHeader() {
+
+            // thead
+            let ths = '';
+
+            // data
+            for (let key of app.structure) {
+                ths += `<th>${key.name}</th>`;
+            }
+
+            ths += `<th>${app.settings.txt.save}</th>`;
+            ths += `<th>${app.settings.txt.duplicate}</th>`;
+            
+            return `<thead><tr>${ths}</tr></thead>`;
         }
 
         //
@@ -247,7 +252,6 @@
 
                 app.settings = settingsRes;
                 app.data = dataRes;
-                //app.systems = systemsRes;
                 app.structure = structureRes;
 
                 setTexts();
