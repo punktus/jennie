@@ -169,8 +169,11 @@
                 }
 
                 tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
-                tbody += `<tr>${tds}</tr>`;
+                tbody += `<tr data-id="${element.id}">${tds}</tr>`;
             }
+
+
+
 
 
             // tfoot
@@ -217,7 +220,7 @@
 
         document.addEventListener("change", function (e) {
             if (e.target) {
-                //console.log(e.target, e.target.dataset.orgValue, e.target.value);
+                console.log(e.target, e.target.dataset.orgValue, e.target.value, e.target.closest('tr'));
 
                 if (e.target.dataset.orgValue !== e.target.value) {
                     console.log('update row ', e.target.value);
