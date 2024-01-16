@@ -148,7 +148,7 @@
 
                 // data
                 for (key in element) {
-                    tds += `<td><span>${element[key]}<span><input type="text" value="${element[key]}" disabled /></td>`;
+                    tds += `<td><input type="text" data-org-value="${element[key]}" value="${element[key]}" /></td>`;
                 }
 
                 // system
