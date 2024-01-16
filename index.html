@@ -190,10 +190,19 @@
         function renderInput(setting, value) {
             console.log('\t\t renderInput', setting, value);
 
-            if (setting.type === 'string') {
-                return `<input type="text" value="${value}">`;
-            } else { 
-                return `<input type="text" value="${value}">`;
+            if (setting.type === 'int') {
+                return `<input type="number" value="${value}" title="${setting.description}" />`;
+            }
+            else if (setting.type === 'email') {
+                return `<input type="email" value="${value}" title="${setting.description}" />`;
+            }
+            else if (setting.type === 'select') {
+                let options = setting.values.map(val => `<option value="${val.key}">${val.value}</option>`).join('');
+
+                return `<select>${options}</select>`;
+            }
+            else { 
+                return `<input type="text" value="${value}" title="${setting.description}" />`;
             }
         }
 
