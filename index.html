@@ -53,6 +53,10 @@
             font-size: 16px;
             line-height: 24px;
         }
+        select, input, button {
+            padding: 4px 10px;
+            border: none;
+        }
 
         table {
             width: 100%;
@@ -163,7 +167,8 @@
 
 
             // tfoot
-            tfoot += `<tfoot><tr><td colspan="${Object.keys(data[0]).length + 1}"><button class="add-btn">${settings.txt.add}</button></td></tr></tfoot>`;
+            const colspan = Object.keys(data[0]).length + 1 + systems.systems.length;
+            tfoot += `<tfoot><tr><td colspan="${colspan}"><button class="add-btn">${settings.txt.add}</button></td></tr></tfoot>`;
 
 
             // Update html
