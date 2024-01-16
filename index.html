@@ -182,6 +182,8 @@
         //
         function renderCell(el) {
             console.log('\t renderCell', el);
+            console.log('el.structureId'el.structureId);
+            console.log('app.structure', app.structure);
             const ddd = app.structure.find(setting => setting.id === el.structureId);// || { challengeId: challengeId, status: 0 };
             console.log('ddd', ddd);
             return `<td>q</td>`;
