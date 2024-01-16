@@ -160,17 +160,20 @@
 
                 const responsesJSON = await Promise.all([
                     fetch('settings.json', { headers: { 'Accept': 'application/json' } }),
-                    fetch('data.json', { headers: { 'Accept': 'application/json' } })
+                    fetch('data.json', { headers: { 'Accept': 'application/json' } }),
+                    fetch('systems.json', { headers: { 'Accept': 'application/json' } })
                 ]);
 
-                const [settingsRes, dataRes] = await Promise.all(responsesJSON.map(r => r.json()));
+                const [settingsRes, dataRes, systemsRes] = await Promise.all(responsesJSON.map(r => r.json()));
+
 
                 settings = settingsRes;
                 data = dataRes;
+                systems = systemsRes;
 
                 setTexts();
                 generateTable(data);
-                
+                console.log(systemsRes)
 
             } catch (err) {
                 throw err;
