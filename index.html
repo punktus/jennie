@@ -103,6 +103,7 @@
         // --- VARIABLES ---
         let settings = {};
         let data = [];
+        let systems = {};
 
         // --- ELEMENTS --
         const pageTitleEl = document.getElementById('page-title');
@@ -110,7 +111,7 @@
         const footerEl = document.getElementById('footer');
 
         // Render table from data
-        function generateTable(data) {
+        function generateTable() {
 
             let thead = '';            
             let tbody = '';
@@ -122,6 +123,11 @@
             for (let key of Object.keys(data[0])) {
                 ths += `<th>${key}</th>`; 
             }
+
+            for (let system of systems.systems) {
+                ths += `<th>${system.name}</th>`; 
+            }
+
             ths += `<th>${settings.txt.save}</th>`; 
             thead += `<thead><tr>${ths}</tr></thead>`;
 
@@ -173,8 +179,7 @@
 
                 setTexts();
                 generateTable(data);
-                console.log(systemsRes)
-
+                
             } catch (err) {
                 throw err;
             }
