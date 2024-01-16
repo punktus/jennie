@@ -120,10 +120,13 @@
 
             // thead
             let ths = '';
+
+            // data
             for (let key of Object.keys(data[0])) {
                 ths += `<th>${key}</th>`; 
             }
 
+            // System
             for (let system of systems.systems) {
                 ths += `<th>${system.name}</th>`; 
             }
@@ -131,14 +134,27 @@
             ths += `<th>${settings.txt.save}</th>`; 
             thead += `<thead><tr>${ths}</tr></thead>`;
 
-            
+
+
+
             // tbody
             for (let element of data) {
 
                 let tds = '';
-                
+
+                // data
                 for (key in element) {
                     tds += `<td>${element[key]}</td>`;
+                }
+
+                // system
+                for (let system of systems.systems) {
+                    let options = '';
+
+                    for (let option of system.values) {
+                        options += `<option>${option}</option>`;
+                    }
+                    ths += `<td><select>${options}</select></td>`;
                 }
 
                 tds += `<td><button class="update-btn" disabled>${settings.txt.update}</button</td>`;
