@@ -64,7 +64,9 @@
             background-color: var(--paynes-gray);
             border-collapse: collapse;
         }
-
+        tr.disabled {
+            opacity: 0.5;
+        }
         td, th {
             padding: 10px;
         }
@@ -269,6 +271,7 @@
         function updateRow(rowId) {
             console.log('updateRow', rowId);
             //fetch('data.json', { headers: { 'Accept': 'application/json' } }),
+            
         }
 
         //
@@ -312,7 +315,13 @@
                 if (e.target.classList.contains("update-btn")) {
                     const row = e.target.closest('tr');
                     const rowId = row.dataset.id;
+
+                    row.classList.add('disabled');
                     updateRow(rowId);
+
+                    setTimeout(function () {
+                        row.classList.remove('disabled')
+                    }, 2000);
                 }
 
                 // duplicate row
