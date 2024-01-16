@@ -161,7 +161,7 @@
 
         //
         function renderRow(element) {
-            console.log('renderRow', element);
+            //console.log('renderRow', element);
 
             let tds = '';
 
@@ -181,7 +181,7 @@
 
         //
         function renderCell(el) {
-            console.log('\t renderCell', el);
+            //console.log('\t renderCell', el);
             const thisSetting = app.structure.find(setting => setting.id === el.structureId);            
             const input = renderInput(thisSetting, el.value);
             return `<td>${input}</td>`;
