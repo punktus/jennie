@@ -1,16 +1,33 @@
 {
-  "id": 3,
-  "name": "Poggio Scali blaha",
-  "height": 15209999,
-  "place": "Uppdaterad plats",
-  "systems": [
+  "id": 5,
+  "data": [
     {
-      "id": 1,
-      "value": "kiwi"
+      "structureId": 0,
+      "value": "Monte Amiata uppdat"
     },
     {
-      "id": 2,
-      "value": "Mazda"
+      "structureId": 1,
+      "value": 17389
+    },
+    {
+      "structureId": 2,
+      "value": "Långtbortistan"
+    },
+    {
+      "structureId": 3,
+      "value": "bengt-bosse@test.com"
+    },
+    {
+      "structureId": 4,
+      "value": 0
+    },
+    {
+      "structureId": 5,
+      "value": 1
+    },
+    {
+      "structureId": 6,
+      "value": 0
     }
   ]
 }

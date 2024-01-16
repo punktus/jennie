@@ -1,0 +1,90 @@
+[
+  {
+    "id": 0,
+    "name": "Name",
+    "type": "string",
+    "description": "Namn"
+  },
+  {
+    "id": 1,
+    "name": "Height",
+    "type": "int",
+    "description": "Höjd över havet"
+  },
+  {
+    "id": 2,
+    "name": "Place",
+    "type": "string",
+    "description": "Var ligger det"
+  },
+  {
+    "id": 3,
+    "name": "E-mail",
+    "type": "email",
+    "description": "Elektrisk postlåda"
+  },
+  {
+    "id": 4,
+    "name": "Role",
+    "type": "select",
+    "description": "Arbetsroll",
+    "values": [
+      {
+        "key": 0,
+        "value": "Chef"
+      },
+      {
+        "key": 1,
+        "value": "Galärslav"
+      },
+      {
+        "key": 2,
+        "value": "Utvecklare"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Fruit",
+    "description": "System 1",
+    "type": "select",
+    "values": [
+      {
+        "key": 0,
+        "value": "kiwi"
+      },
+      {
+        "key": 1,
+        "value": "pineapple"
+      },
+      {
+        "key": 2,
+        "value": "mango"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Automobil",
+    "description": "System 2",
+    "type": "select",
+    "values": [
+      {
+        "key": 0,
+        "value": "Volvo"
+      },
+      {
+        "key": 1,
+        "value": "BMW"
+      },
+      {
+        "key": 2,
+        "value": "Ford"
+      },
+      {
+        "key": 3,
+        "value": "Mazda"
+      }
+    ]
+  }
+]

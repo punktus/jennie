@@ -1,81 +1,166 @@
 [
   {
     "id": 1,
-    "name": "Monte Falco",
-    "height": 1658,
-    "place": "Parco Foreste Casentinesi",
-    "systems": [
+    "data": [
       {
-        "id": 1,
-        "value": "kiwi"
+        "structureId": 0,
+        "value": "Monte Falco"
       },
       {
-        "id": 2,
-        "value": "Mazda"
+        "structureId": 1,
+        "value": 1658
+      },
+      {
+        "structureId": 2,
+        "value": "Parco Foreste Casentinesi"
+      },
+      {
+        "structureId": 3,
+        "value": "test@test.com"
+      },
+      {
+        "structureId": 4,
+        "value": 1
+      },
+      {
+        "structureId": 5,
+        "value": 2
+      },
+      {
+        "structureId": 6,
+        "value": 3
       }
     ]
   },
   {
     "id": 2,
-    "name": "Monte Falterona",
-    "height": 1654,
-    "place": "pwnan",
-    "systems": [
+    "data": [
       {
-        "id": 1,
-        "value": "kiwi"
+        "structureId": 0,
+        "value": "Monte Falterona"
       },
       {
-        "id": 2,
-        "value": "Mazda"
+        "structureId": 1,
+        "value": 1654
+      },
+      {
+        "structureId": 2,
+        "value": "Parco Foreste Casentinesi"
+      },
+      {
+        "structureId": 3,
+        "value": "test@test.com"
+      },
+      {
+        "structureId": 4,
+        "value": 1
+      },
+      {
+        "structureId": 5,
+        "value": 0
+      },
+      {
+        "structureId": 6,
+        "value": 0
       }
-    ]
+    ] 
   },
   {
     "id": 3,
-    "name": "Poggio Scali",
-    "height": 1520,
-    "place": "jajajaja",
-    "systems": [
+    "data": [
       {
-        "id": 1,
-        "value": "kiwi"
+        "structureId": 0,
+        "value": "Poggio Scali"
       },
       {
-        "id": 2,
-        "value": "Mazda"
+        "structureId": 1,
+        "value": 1520
+      },
+      {
+        "structureId": 2,
+        "value": "Parco Foreste Casentinesi"
+      },
+      {
+        "structureId": 3,
+        "value": "robert@test.com"
+      },
+      {
+        "structureId": 4,
+        "value": 1
+      },
+      {
+        "structureId": 5,
+        "value": 0
+      },
+      {
+        "structureId": 6,
+        "value": 0
       }
     ]
   },
   {
     "id": 4,
-    "name": "Pratomagno",
-    "height": 1592,
-    "place": "Test",
-    "systems": [
+    "data": [
       {
-        "id": 1,
-        "value": "kiwi"
+        "structureId": 0,
+        "value": "Pratomagno"
       },
       {
-        "id": 2,
-        "value": "Mazda"
+        "structureId": 1,
+        "value": 1592
+      },
+      {
+        "structureId": 2,
+        "value": "Appalasherna"
+      },
+      {
+        "structureId": 3,
+        "value": "kenny@test.com"
+      },
+      {
+        "structureId": 4,
+        "value": 0
+      },
+      {
+        "structureId": 5,
+        "value": 1
+      },
+      {
+        "structureId": 6,
+        "value": 0
       }
     ]
   },
   {
     "id": 5,
-    "name": "Monte Amiata",
-    "height": 1738,
-    "place": "Siena",
-    "systems": [
+    "data": [
       {
-        "id": 1,
-        "value": "kiwi"
+        "structureId": 0,
+        "value": "Monte Amiata"
       },
       {
-        "id": 2,
-        "value": "Mazda"
+        "structureId": 1,
+        "value": 1738
+      },
+      {
+        "structureId": 2,
+        "value": "LÅngtbortistan"
+      },
+      {
+        "structureId": 3,
+        "value": "bosse@test.com"
+      },
+      {
+        "structureId": 4,
+        "value": 2
+      },
+      {
+        "structureId": 5,
+        "value": 0
+      },
+      {
+        "structureId": 6,
+        "value": 3
       }
     ]
   }
