@@ -209,7 +209,7 @@
                 }).join('');
 
                 // No value => add empty option
-                if (typeof value === "string" && value.length === 0) {
+                if (value.length === 0) {
                     options = `<option selected disabled>${app.settings.txt.select}</option>` + options;
                 }
 
