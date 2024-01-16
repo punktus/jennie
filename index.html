@@ -118,7 +118,7 @@
         const footerEl = document.getElementById('footer');
 
         // Render table from data
-        function generateTable() {
+        function renderTable() {
 
             const thead = renderTableHeader();            
             const tbody = renderTableBody();
@@ -164,10 +164,12 @@
             let tds = '';
 
             // data
-            for (key of element.data) {
+            //for (key of element.data) {
+            //    tds += renderCell(key);
+            //}
+            for (let key of app.structure) {
                 tds += renderCell(key);
             }
-
 
             //
             tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
@@ -179,11 +181,17 @@
 
         //
         function renderCell(el) {
-            //console.log('\t renderCell', el);
+            console.log('\t renderCell', el);
             const thisSetting = app.structure.find(setting => setting.id === el.structureId);
             const input = renderInput(thisSetting, el.value);
             return `<td>${input}</td>`;
         }
+        //function renderCell(el) {
+        //    //console.log('\t renderCell', el);
+        //    const thisSetting = app.structure.find(setting => setting.id === el.structureId);
+        //    const input = renderInput(thisSetting, el.value);
+        //    return `<td>${input}</td>`;
+        //}
 
         //
         function renderInput(setting, value) {
@@ -257,7 +265,7 @@
                 app.structure = structureRes;
 
                 setTexts();
-                generateTable();
+                renderTable();
                 
             } catch (err) {
                 throw err;
