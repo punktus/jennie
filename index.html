@@ -130,14 +130,15 @@
             let ths = '';
 
             // data
-            for (let key of Object.keys(app.data[0])) {
-                ths += `<th>${key}</th>`; 
+            //for (let key of Object.keys(app.data[0])) {
+            for (let key of app.structure) {
+                ths += `<th>${key.name}</th>`;
             }
 
-            // System
-            for (let system of app.systems) {
-                ths += `<th>${system.name}</th>`; 
-            }
+            //// System
+            //for (let system of app.systems) {
+            //    ths += `<th>${system.name}</th>`; 
+            //}
 
             ths += `<th>${app.settings.txt.save}</th>`; 
             ths += `<th>${app.settings.txt.duplicate}</th>`; 
