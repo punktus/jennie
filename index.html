@@ -195,7 +195,7 @@
                 return `<input type="number" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
             }
 
-                // email/ dropdown
+            // email/ dropdown
             else if (setting.type === 'email') {
                 return `<input type="email" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
             }
@@ -247,9 +247,18 @@
             }
         };
 
+
+        // update Row
+        function updateRow(rowId) {
+            console.log('updateRow', rowId);
+        }
+
         //
         fetchData();
 
+
+
+        // --- EVENTS ---
         document.addEventListener("change", function (e) {
             if (e.target) {
 
@@ -261,6 +270,15 @@
                     updateBtn.removeAttribute('disabled');
                 }
             }            
+        });
+        document.addEventListener("click", function (e) {
+            if (e.target) {
+                if (e.target.classList.contains("update-btn")) {
+                    const row = e.target.closest('tr');
+                    const rowId = row.dataset.id;
+                    updateRow(rowId);
+                }
+            }
         });
 
     </script>
