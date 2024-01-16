@@ -108,11 +108,9 @@
         const app = {
             settings: {},
             data: [],
-            systems: []
+            systems: [],
+            structure: []
         };
-        //let settings = {};
-        //let data = [];
-        //let systems = {};
 
         // --- ELEMENTS --
         const pageTitleEl = document.getElementById('page-title');
@@ -149,29 +147,29 @@
             // tbody
             for (let element of app.data) {
 
-                //renderRow(element);
+                tbody += renderRow(element);
 
-                let tds = '';
+                //let tds = '';
 
-                // data
-                for (key in element) {
-                    tds += `<td><input type="text" data-org-value="${element[key]}" value="${element[key]}" /></td>`;
-                }
+                //// data
+                //for (key in element) {
+                //    tds += `<td><input type="text" data-org-value="${element[key]}" value="${element[key]}" /></td>`;
+                //}
 
-                // system
-                for (let system of app.systems) {
-                    let options = '';
+                //// system
+                //for (let system of app.systems) {
+                //    let options = '';
 
-                    //
-                    for (let option of system.values) {
-                        options += `<option>${option}</option>`;
-                    }
+                //    //
+                //    for (let option of system.values) {
+                //        options += `<option>${option}</option>`;
+                //    }
 
-                    tds += `<td><select data-org-value="${system.values[0]}">${options}</select></td>`;
-                }
+                //    tds += `<td><select data-org-value="${system.values[0]}">${options}</select></td>`;
+                //}
 
-                tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
-                tbody += `<tr data-id="${element.id}">${tds}</tr>`;
+                //tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
+                //tbody += `<tr data-id="${element.id}">${tds}</tr>`;
             }
 
 
@@ -229,14 +227,16 @@
                 const responsesJSON = await Promise.all([
                     fetch('settings.json', { headers: { 'Accept': 'application/json' } }),
                     fetch('data.json', { headers: { 'Accept': 'application/json' } }),
-                    fetch('systems.json', { headers: { 'Accept': 'application/json' } })
+                    fetch('systems.json', { headers: { 'Accept': 'application/json' } }),
+                    fetch('structure.json', { headers: { 'Accept': 'application/json' } })
                 ]);
 
-                const [settingsRes, dataRes, systemsRes] = await Promise.all(responsesJSON.map(r => r.json()));
+                const [settingsRes, dataRes, systemsRes, structureRes] = await Promise.all(responsesJSON.map(r => r.json()));
 
                 app.settings = settingsRes;
                 app.data = dataRes;
                 app.systems = systemsRes;
+                app.structure = structureRes;
 
                 setTexts();
                 generateTable();
