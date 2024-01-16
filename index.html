@@ -188,16 +188,20 @@
         }
 
         function renderInput(setting, value) {
-            console.log('\t\t renderInput', setting, value);
+            //console.log('\t\t renderInput', setting, value);
 
+            // Integer
             if (setting.type === 'int') {
                 return `<input type="number" data-id="${setting.id}" value="${value}" title="${setting.description}" />`;
             }
+
+                // email/ dropdown
             else if (setting.type === 'email') {
                 return `<input type="email" data-id="${setting.id}" value="${value}" title="${setting.description}" />`;
             }
-            else if (setting.type === 'select') {
 
+            // select / dropdown
+            else if (setting.type === 'select') {
                 let options = setting.values.map(val => {
                     const selected = val.key === value ? 'selected' : '';
                     return `<option ${selected} value="${val.key}">${val.value}</option>`;
@@ -205,6 +209,8 @@
 
                 return `<select data-id="${setting.id}" title="${setting.description}">${options}</select>`;
             }
+
+            // string
             else { 
                 return `<input type="text" value="${value}" title="${setting.description}" />`;
             }
@@ -223,15 +229,14 @@
                 const responsesJSON = await Promise.all([
                     fetch('settings.json', { headers: { 'Accept': 'application/json' } }),
                     fetch('data.json', { headers: { 'Accept': 'application/json' } }),
-                    fetch('systems.json', { headers: { 'Accept': 'application/json' } }),
                     fetch('structure.json', { headers: { 'Accept': 'application/json' } })
                 ]);
 
-                const [settingsRes, dataRes, systemsRes, structureRes] = await Promise.all(responsesJSON.map(r => r.json()));
+                const [settingsRes, dataRes, structureRes] = await Promise.all(responsesJSON.map(r => r.json()));
 
                 app.settings = settingsRes;
                 app.data = dataRes;
-                app.systems = systemsRes;
+                //app.systems = systemsRes;
                 app.structure = structureRes;
 
                 setTexts();
