@@ -192,12 +192,12 @@
 
             // Integer
             if (setting.type === 'int') {
-                return `<input type="number" data-id="${setting.id}" value="${value}" title="${setting.description}" />`;
+                return `<input type="number" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
             }
 
                 // email/ dropdown
             else if (setting.type === 'email') {
-                return `<input type="email" data-id="${setting.id}" value="${value}" title="${setting.description}" />`;
+                return `<input type="email" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
             }
 
             // select / dropdown
@@ -207,12 +207,12 @@
                     return `<option ${selected} value="${val.key}">${val.value}</option>`;
                 }).join('');
 
-                return `<select data-id="${setting.id}" title="${setting.description}">${options}</select>`;
+                return `<select data-id="${setting.id}" data-org-value="${value}" title="${setting.description}">${options}</select>`;
             }
 
             // string
             else { 
-                return `<input type="text" value="${value}" title="${setting.description}" />`;
+                return `<input type="text" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
             }
         }
 
@@ -252,6 +252,7 @@
 
         document.addEventListener("change", function (e) {
             if (e.target) {
+
                 console.log(e.target, e.target.dataset.orgValue, e.target.value, e.target.closest('tr'));
 
                 if (e.target.dataset.orgValue !== e.target.value) {
