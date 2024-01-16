@@ -121,23 +121,11 @@
         function generateTable() {
 
             const thead = renderTableHeader();            
-            let tbody = '';
+            const tbody = renderTableBody();
             const tfoot = renderTableFooter();
 
-
-
-
-
-
-            // tbody
-            for (let element of app.data) {
-                tbody += renderRow(element);
-            }
-
-
-
             // Update html
-            mainEl.innerHTML = `<table>${thead}<tbody>${tbody}</tbody>${tfoot}</table>`;
+            mainEl.innerHTML = `<table>${thead}${tbody}${tfoot}</table>`;
         }
 
         // Table Header
@@ -155,6 +143,18 @@
             ths += `<th>${app.settings.txt.duplicate}</th>`;
             
             return `<thead><tr>${ths}</tr></thead>`;
+        }
+
+        //
+        function renderTableBody() {
+            const rows = '';
+
+            // tbody
+            for (let element of app.data) {
+                rows += renderRow(element);
+            }
+
+            return `<tbody>${rows}</tbody>`;
         }
 
         //
