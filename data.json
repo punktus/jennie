@@ -3,30 +3,80 @@
     "id": 1,
     "name": "Monte Falco",
     "height": 1658,
-    "place": "Parco Foreste Casentinesi"
+    "place": "Parco Foreste Casentinesi",
+    "systems": [
+      {
+        "id": 1,
+        "value": "kiwi"
+      },
+      {
+        "id": 2,
+        "value": "Mazda"
+      }
+    ]
   },
   {
     "id": 2,
     "name": "Monte Falterona",
     "height": 1654,
-    "place": "pwnan"
+    "place": "pwnan",
+    "systems": [
+      {
+        "id": 1,
+        "value": "kiwi"
+      },
+      {
+        "id": 2,
+        "value": "Mazda"
+      }
+    ]
   },
   {
     "id": 3,
     "name": "Poggio Scali",
     "height": 1520,
-    "place": "jajajaja"
+    "place": "jajajaja",
+    "systems": [
+      {
+        "id": 1,
+        "value": "kiwi"
+      },
+      {
+        "id": 2,
+        "value": "Mazda"
+      }
+    ]
   },
   {
     "id": 4,
     "name": "Pratomagno",
     "height": 1592,
-    "place": "Test"
+    "place": "Test",
+    "systems": [
+      {
+        "id": 1,
+        "value": "kiwi"
+      },
+      {
+        "id": 2,
+        "value": "Mazda"
+      }
+    ]
   },
   {
     "id": 5,
     "name": "Monte Amiata",
     "height": 1738,
-    "place": "Siena"
+    "place": "Siena",
+    "systems": [
+      {
+        "id": 1,
+        "value": "kiwi"
+      },
+      {
+        "id": 2,
+        "value": "Mazda"
+      }
+    ]
   }
 ]

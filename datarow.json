@@ -2,5 +2,15 @@
   "id": 3,
   "name": "Poggio Scali blaha",
   "height": 15209999,
-  "place": "Uppdaterad plats"
+  "place": "Uppdaterad plats",
+  "systems": [
+    {
+      "id": 1,
+      "value": "kiwi"
+    },
+    {
+      "id": 2,
+      "value": "Mazda"
+    }
+  ]
 }

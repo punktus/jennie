@@ -1,9 +1,11 @@
 [
   {
+    "id": 1,
     "name": "sys1",
     "values": [ "kiwi", "pineapple", "mango" ]
   },
   {
+    "id": 2,
     "name": "sys2",
     "values": [ "Volvo", "BMW", "Ford", "Mazda" ]
   }

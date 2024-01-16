@@ -149,6 +149,8 @@
             // tbody
             for (let element of app.data) {
 
+                //renderRow(element);
+
                 let tds = '';
 
                 // data
@@ -183,6 +185,35 @@
 
             // Update html
             mainEl.innerHTML = `<table>${thead}<tbody>${tbody}</tbody>${tfoot}</table>`;
+        }
+
+        //
+        function renderRow(element) {
+            let tds = '';
+
+            // data
+            for (key in element) {
+                tds += `<td><input type="text" data-org-value="${element[key]}" value="${element[key]}" /></td>`;
+            }
+
+            // system
+            for (let system of app.systems) {
+                let options = '';
+
+                //
+                for (let option of system.values) {
+                    options += `<option>${option}</option>`;
+                }
+
+                //
+                tds += `<td><select data-org-value="${system.values[0]}">${options}</select></td>`;
+            }
+
+            //
+            tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
+
+            //
+            return `<tr data-id="${element.id}">${tds}</tr>`;
         }
 
         // Render page header & footer texts
