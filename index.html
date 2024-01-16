@@ -165,7 +165,7 @@
                         options += `<option>${option}</option>`;
                     }
 
-                    tds += `<td><select>${options}</select></td>`;
+                    tds += `<td><select data-org-value="${system.values[0]}">${options}</select></td>`;
                 }
 
                 tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
@@ -214,6 +214,16 @@
 
         //
         fetchData();
+
+        document.addEventListener("change", function (e) {
+            if (e.target) {
+                //console.log(e.target, e.target.dataset.orgValue, e.target.value);
+
+                if (e.target.dataset.orgValue !== e.target.value) {
+                    console.log('update row ', e.target.value);
+                }
+            }            
+        });
 
     </script>
 </body>
