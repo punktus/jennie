@@ -183,8 +183,8 @@
         function renderCell(setting, element) {
             console.log('\t renderCell', setting, element);
 
-            const value = element.data.find(val => val.structureId === setting.id);
-            const input = renderInput(setting, value);
+            const data = element.data.find(val => val.structureId === setting.id);
+            const input = renderInput(setting, data.value);
 
             return `<td>${input}</td>`;
         }
