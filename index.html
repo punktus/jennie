@@ -172,7 +172,7 @@
             }
 
             //
-            tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
+            tds += `<td><button class="update-btn">${app.settings.txt.update}</button</td>`;
             tds += `<td><button class="duplicate-btn">${app.settings.txt.duplicate}</button</td>`;
             tds += `<td><button class="delete-btn">${app.settings.txt.delete}</button</td>`;
 
@@ -235,7 +235,7 @@
                 tds += `<td>${input}</td>`;
             }
 
-            return `<tfoot><tr>${tds}<td colspan="3"><button class="add-btn" disabled>${app.settings.txt.add}</button></td></tr></tfoot>`;
+            return `<tfoot><tr>${tds}<td colspan="3"><button class="add-btn">${app.settings.txt.add}</button></td></tr></tfoot>`;
         }
 
         // Render page header & footer texts
@@ -249,9 +249,9 @@
             try {
 
                 const responsesJSON = await Promise.all([
-                    fetch('settings.json', { headers: { 'Accept': 'application/json' } }),
-                    fetch('data.json', { headers: { 'Accept': 'application/json' } }),
-                    fetch('structure.json', { headers: { 'Accept': 'application/json' } })
+                    fetch('https://punktus.github.io/jennie/settings.json', { headers: { 'Accept': 'application/json' } }),
+                    fetch('https://punktus.github.io/jennie/data.json', { headers: { 'Accept': 'application/json' } }),
+                    fetch('https://punktus.github.io/jennie/structure.json', { headers: { 'Accept': 'application/json' } })
                 ]);
 
                 const [settingsRes, dataRes, structureRes] = await Promise.all(responsesJSON.map(r => r.json()));
