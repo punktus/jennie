@@ -6,6 +6,7 @@
     "update": "Uppdatera",
     "add": "Lägg till",
     "duplicate": "Duplicera",
-    "select":  "Välj"
+    "delete": "Ta bort",
+    "select": "Välj"
   }
 }

@@ -143,6 +143,7 @@
 
             ths += `<th>${app.settings.txt.save}</th>`;
             ths += `<th>${app.settings.txt.duplicate}</th>`;
+            ths += `<th>${app.settings.txt.delete}</th>`;
             
             return `<thead><tr>${ths}</tr></thead>`;
         }
@@ -173,6 +174,7 @@
             //
             tds += `<td><button class="update-btn" disabled>${app.settings.txt.update}</button</td>`;
             tds += `<td><button class="duplicate-btn">${app.settings.txt.duplicate}</button</td>`;
+            tds += `<td><button class="delete-btn">${app.settings.txt.delete}</button</td>`;
 
             //
             return `<tr data-id="${element.id}">${tds}</tr>`;
@@ -233,7 +235,7 @@
                 tds += `<td>${input}</td>`;
             }
 
-            return `<tfoot><tr>${tds}<td colspan="2"><button class="add-btn" disabled>${app.settings.txt.add}</button></td></tr></tfoot>`;
+            return `<tfoot><tr>${tds}<td colspan="3"><button class="add-btn" disabled>${app.settings.txt.add}</button></td></tr></tfoot>`;
         }
 
         // Render page header & footer texts
@@ -334,6 +336,12 @@
                 // TODO: add row
                 if (e.target.classList.contains("add-btn")) {
                     console.warn('TODO add');
+                }
+
+                // Delete row
+                // TODO: delete row
+                if (e.target.classList.contains("delete-btn")) {
+                    console.warn('TODO delete');
                 }
             }
         });
