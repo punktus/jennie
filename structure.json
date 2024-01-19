@@ -3,31 +3,35 @@
     "id": 0,
     "name": "Name",
     "type": "string",
-    "description": "Namn"
+    "description": "Förnamn"
   },
   {
     "id": 1,
     "name": "Height",
     "type": "int",
-    "description": "Höjd över havet"
+    "description": "Höjd över havet",    
+    "readonly":  true
   },
   {
     "id": 2,
     "name": "Place",
     "type": "string",
-    "description": "Var ligger det"
+    "description": "Var ligger det?",
+    "required": true
   },
   {
     "id": 3,
     "name": "E-mail",
     "type": "email",
-    "description": "Elektrisk postlåda"
+    "description": "Elektrisk postlåda",
+    "regex": "[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
   },
   {
     "id": 4,
     "name": "Role",
     "type": "select",
     "description": "Arbetsroll",
+    "required": true,
     "values": [
       {
         "key": 0,
@@ -40,6 +44,10 @@
       {
         "key": 2,
         "value": "Utvecklare"
+      },
+      {
+        "key": 3,
+        "value": "Mellanchef - shake fist at"
       }
     ]
   },

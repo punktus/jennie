@@ -40,10 +40,6 @@
         "value": "Monte Falterona"
       },
       {
-        "structureId": 1,
-        "value": 1654
-      },
-      {
         "structureId": 2,
         "value": "Parco Foreste Casentinesi"
       },
@@ -53,7 +49,7 @@
       },
       {
         "structureId": 4,
-        "value": 1
+        "value": 3
       },
       {
         "structureId": 5,
