@@ -181,23 +181,30 @@
             //console.log('\t renderCell', setting, element);
 
             const data = element.data.find(val => val.structureId === setting.id);
-            const input = renderInput(setting, data.value);
+            const value = data ? data.value : '';
+            const input = renderInput(setting, value);
 
             return `<td>${input}</td>`;
         }
 
         //
         function renderInput(setting, value) {
-            //console.log('\t\t renderInput', setting, value);
+            console.log('\t\t renderInput', setting, value);
+
+            // optional
+            const readonly = setting.readonly ? 'readonly' : '';
+            const required = setting.required ? 'required' : '';
+            const pattern = setting.regex ? `pattern="${setting.regex}"` : '';
+            
 
             // Integer
             if (setting.type === 'int') {
-                return `<input type="number" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
+                return `<input type="number" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}" ${readonly}${required}/>`;
             }
 
             // email/ dropdown
             else if (setting.type === 'email') {
-                return `<input type="email" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
+                return `<input type="email" data-id="${setting.id}" data-org-value="${value}" value="${value}" title="${setting.description}"  ${readonly}${required}${pattern}/>`;
             }
 
             // select / dropdown
@@ -213,12 +220,12 @@
                     options = `<option selected disabled>${app.settings.txt.select}</option>` + options;
                 }
 
-                return `<select data-id="${setting.id}" data-org-value="${value}" title="${setting.description}">${options}</select>`;
+                return `<select data-id="${setting.id}" data-org-value="${value}" title="${setting.description}" ${required}>${options}</select>`;
             }
 
             // string
             else { 
-                return `<input type="text" data-org-value="${value}" value="${value}" title="${setting.description}" />`;
+                return `<input type="text" data-org-value="${value}" value="${value}" title="${setting.description}" ${readonly}${required}${pattern}/>`;
             }
         }
 

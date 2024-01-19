@@ -3,14 +3,14 @@
     "id": 0,
     "name": "Name",
     "type": "string",
-    "description": "Förnamn"
+    "description": "Förnamn",
+    "readonly": true
   },
   {
     "id": 1,
     "name": "Height",
     "type": "int",
-    "description": "Höjd över havet",    
-    "readonly":  true
+    "description": "Höjd över havet"
   },
   {
     "id": 2,
