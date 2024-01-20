@@ -307,7 +307,8 @@
             // invalid url https://reqres.in/invalid-url
 
 
-            const url = 'https://reqres.in/api/posts/' + rowId;
+            const Xurl = 'https://reqres.in/api/posts/' + rowId;
+            const url = 'https://reqres.in/invalid-url';
 
             fetch(url, { method: 'DELETE' })
                 .then(async response => {
@@ -331,8 +332,8 @@
 
                 })
                 .catch(error => {
-                    element.parentElement.innerHTML = `${app.settings.txt.error}: ${error}`;
-                    console.error(app.settings.txt.error, error);
+                    element.innerHTML = `${app.settings.txt.deleteError}: ${error}`;
+                    console.error(`${app.settings.txt.deleteError}`, error);
                 });
         }
 

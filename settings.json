@@ -9,6 +9,6 @@
     "delete": "Ta bort",
     "select": "Välj",
     "deleteSuccess": "Delete successful",
-    "error": "Error"
+    "deleteError": "Delete error"
   }
 }
