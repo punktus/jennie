@@ -7,6 +7,8 @@
     "add": "Lägg till",
     "duplicate": "Duplicera",
     "delete": "Ta bort",
-    "select": "Välj"
+    "select": "Välj",
+    "deleteSuccess": "Delete successful",
+    "error": "Error"
   }
 }

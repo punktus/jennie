@@ -80,16 +80,19 @@
         tbody tr:hover {
             background-color: var(--zomp);
         }
+        
 
         tfoot td {
             border-top: 1px solid;
         }
 
+        tbody tr.deleting {
+            background-color: pink;
+            opacity: 0.5;
+        }
+
         .footer {
-            position: absolute;
-            bottom: 1em;
-            left: 1em;
-            z-index: 10;
+            margin-top: 2em
         }
     </style>
 </head>
@@ -98,6 +101,13 @@
     <header>
         <h1 id="page-title"></h1>
     </header>
+    
+    <div id="delete-request-error-handling">
+        <div>
+            <div class="status">status</div>
+        </div>
+    </div>
+
     <main id="main"></main>
     <footer id="footer" class="footer"></footer>
 
@@ -118,7 +128,7 @@
         // Render table from data
         function renderTable() {
 
-            const thead = renderTableHeader();            
+            const thead = renderTableHeader();
             const tbody = renderTableBody();
             const tfoot = renderTableFooter();
 
@@ -140,7 +150,7 @@
             ths += `<th>${app.settings.txt.save}</th>`;
             ths += `<th>${app.settings.txt.duplicate}</th>`;
             ths += `<th>${app.settings.txt.delete}</th>`;
-            
+
             return `<thead><tr>${ths}</tr></thead>`;
         }
 
@@ -162,7 +172,7 @@
 
             let tds = '';
 
-            // data            
+            // data
             for (let setting of app.structure) {
                 tds += renderCell(setting, element);
             }
@@ -189,13 +199,13 @@
 
         //
         function renderInput(setting, value) {
-            console.log('\t\t renderInput', setting, value);
+            //console.log('\t\t renderInput', setting, value);
 
             // optional
             const readonly = setting.readonly ? 'readonly' : '';
             const required = setting.required ? 'required' : '';
             const pattern = setting.regex ? `pattern="${setting.regex}"` : '';
-            
+
 
             // Integer
             if (setting.type === 'int') {
@@ -224,7 +234,7 @@
             }
 
             // string
-            else { 
+            else {
                 return `<input type="text" data-org-value="${value}" value="${value}" title="${setting.description}" ${readonly}${required}${pattern}/>`;
             }
         }
@@ -265,18 +275,65 @@
 
                 setTexts();
                 renderTable();
-                
+
             } catch (err) {
                 throw err;
             }
         };
 
+        function disableRow(rowId) {
+            console.log('disableRow', rowId);
+            const el = document.querySelector('tr[data-id="' + rowId + '"]');
+            el.classList.add('deleting');
+        }
 
         // update Row
         function updateRow(rowId) {
             console.log('updateRow', rowId);
             //fetch('data.json', { headers: { 'Accept': 'application/json' } }),
-            
+
+        }
+
+        // Delete row
+        function deleteRow(rowId) {
+            console.log('deleteRow', rowId);
+
+            disableRow(rowId);
+
+
+            const element = document.querySelector('#delete-request-error-handling .status');
+
+            // https://jasonwatmore.com/post/2021/09/21/fetch-http-delete-request-examples
+            // invalid url https://reqres.in/invalid-url
+
+
+            const url = 'https://reqres.in/api/posts/' + rowId;
+
+            fetch(url, { method: 'DELETE' })
+                .then(async response => {
+
+                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                    const data = isJson && await response.json();
+
+                    // check for error response
+                    if (!response.ok) {
+                        // get error message from body or default to response status
+                        const error = (data && data.message) || response.status;
+                        return Promise.reject(error);
+                    }
+
+                    //
+                    element.innerHTML = app.settings.txt.deleteSuccess;
+
+                    // Remove from UI
+                    const el = document.querySelector('tr[data-id="' + rowId + '"]');
+                    el.remove();
+
+                })
+                .catch(error => {
+                    element.parentElement.innerHTML = `${app.settings.txt.error}: ${error}`;
+                    console.error(app.settings.txt.error, error);
+                });
         }
 
         //
@@ -309,17 +366,30 @@
                         addBtn.removeAttribute('disabled');
                     }
                 }
-            }            
+            }
         });
 
         // click
         document.addEventListener("click", function (e) {
             if (e.target) {
 
+                const el = e.target;
+
+                // Stop if not btn
+                if (
+                    !el.classList.contains('update-btn') &&
+                    !el.classList.contains('duplicate-btn') &&
+                    !el.classList.contains('add-btn') &&
+                    !el.classList.contains('delete-btn')
+                ) {
+                    return;
+                }
+
+                const row = el.closest('tr');
+                const rowId = row.dataset.id;
+
                 // Update row
-                if (e.target.classList.contains("update-btn")) {
-                    const row = e.target.closest('tr');
-                    const rowId = row.dataset.id;
+                if (el.classList.contains("update-btn")) {
 
                     row.classList.add('disabled');
                     updateRow(rowId);
@@ -331,20 +401,21 @@
 
                 // duplicate row
                 // TODO: duplicate row
-                if (e.target.classList.contains("duplicate-btn")) {
+                if (el.classList.contains("duplicate-btn")) {
                     console.warn('TODO duplicate');
                 }
 
                 // Add row
                 // TODO: add row
-                if (e.target.classList.contains("add-btn")) {
+                if (el.classList.contains("add-btn")) {
                     console.warn('TODO add');
                 }
 
                 // Delete row
                 // TODO: delete row
-                if (e.target.classList.contains("delete-btn")) {
-                    console.warn('TODO delete');
+                if (el.classList.contains("delete-btn")) {
+                    ////console.warn('TODO delete');
+                    deleteRow(rowId);
                 }
             }
         });
