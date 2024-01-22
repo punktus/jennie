@@ -49,19 +49,21 @@
             white-space: nowrap;
         }
         button {
-            cursor: pointer;
-            &:hover {
+            &:enabled {
+                cursor: pointer;
+            }
+            &:not([disabled]):hover {
                 background-color: var(--saffron);
             }
         }
 
         table {
             width: 100%;
-            background-color: var(--paynes-gray);
             border-collapse: collapse;
         }
-        tr.disabled {
-            opacity: 0.5;
+        tr {
+            transition: all .2s ease-out;
+            background-color: var(--paynes-gray);
         }
         td, th {
             padding: 10px;
@@ -86,27 +88,44 @@
             border-top: 1px solid;
         }
 
+        tbody tr.deleting,
+        tbody tr.duplicating,
+        tbody tr.updating {
+            opacity: 0.5;
+            transform: translateX(-10px);
+        }
         tbody tr.deleting {
             background-color: pink;
-            opacity: 0.5;
         }
+        tbody tr.updating {
+            background-color: green;
+        }
+        tbody tr.duplicating {
+            background-color: peru;
+        }
+        
 
         .footer {
             margin-top: 2em
         }
+
+        .log {
+            font-size: small;
+            padding: 0.5em;
+            border: 1px solid;
+            height: 40px;
+            overflow: auto;
+        }
+
     </style>
 </head>
 
 <body>
+    <div id="log" class="log">Log</div>
+
     <header>
         <h1 id="page-title"></h1>
     </header>
-    
-    <div id="delete-request-error-handling">
-        <div>
-            <div class="status">status</div>
-        </div>
-    </div>
 
     <main id="main"></main>
     <footer id="footer" class="footer"></footer>
@@ -124,6 +143,7 @@
         const pageTitleEl = document.getElementById('page-title');
         const mainEl = document.getElementById('main');
         const footerEl = document.getElementById('footer');
+        const logEl = document.getElementById('log');
 
         // Render table from data
         function renderTable() {
@@ -281,34 +301,90 @@
             }
         };
 
-        function disableRow(rowId) {
-            console.log('disableRow', rowId);
-            const el = document.querySelector('tr[data-id="' + rowId + '"]');
-            el.classList.add('deleting');
+
+
+
+        function toggleRowInputs(rowId, bool) {
+            console.log('toggleRowInputs', rowId, bool);
+
+            // Row element
+            const row = document.querySelector('tr[data-id="' + rowId + '"]');
+
+            // Find all inputs & set prop disabled
+            row.querySelectorAll('input, select, button, textarea').forEach(function (a) {
+                a.disabled = !bool;
+            });
+            
         }
 
-        // update Row
+        // Update Row
         function updateRow(rowId) {
             console.log('updateRow', rowId);
             //fetch('data.json', { headers: { 'Accept': 'application/json' } }),
 
+            // Row element
+            const row = document.querySelector('tr[data-id="' + rowId + '"]');
+
+            // Make row color to indicate update
+            row.classList.add('updating');
+
+            // Disable row inputs
+            toggleRowInputs(rowId, false);
+
+
+            setTimeout(function () {
+                addToLog('Update success ' + rowId);
+                row.classList.remove('updating');
+
+                toggleRowInputs(rowId, true);
+
+            }, 1000);
+
+            // TODO ....
+
+        }
+
+        // Duplicate Row
+        function duplicateRow(rowId) {
+            console.warn('TODO duplicateRow', rowId);
+
+            // Row element
+            const row = document.querySelector('tr[data-id="' + rowId + '"]');
+
+            // Make row color to indicate removing  
+            row.classList.add('duplicating');
+
+            // Disable row inputs
+            toggleRowInputs(rowId, false);
+
+            // TODO...
+            setTimeout(function () {
+                addToLog('Duplicate success ' + rowId);
+                row.classList.remove('duplicating');
+
+                toggleRowInputs(rowId, true);
+
+                row.parentElement.innerHTML += row.outerHTML;
+            }, 1000);
         }
 
         // Delete row
         function deleteRow(rowId) {
-            console.log('deleteRow', rowId);
+            //console.log('deleteRow', rowId);
 
-            disableRow(rowId);
+            // Row element
+            const row = document.querySelector('tr[data-id="' + rowId + '"]');
 
+            // Make row color to indicate removing  
+            row.classList.add('deleting');
 
-            const element = document.querySelector('#delete-request-error-handling .status');
+            // Disable row inputs
+            toggleRowInputs(rowId, false);
 
             // https://jasonwatmore.com/post/2021/09/21/fetch-http-delete-request-examples
             // invalid url https://reqres.in/invalid-url
 
-
-            const Xurl = 'https://reqres.in/api/posts/' + rowId;
-            const url = 'https://reqres.in/invalid-url';
+            const url = 'https://reqres.in/api/posts/' + rowId;            
 
             fetch(url, { method: 'DELETE' })
                 .then(async response => {
@@ -323,21 +399,30 @@
                         return Promise.reject(error);
                     }
 
-                    //
-                    element.innerHTML = app.settings.txt.deleteSuccess;
+                    // Write in log
+                    addToLog(app.settings.txt.deleteSuccess + ' - ' + rowId);
 
-                    // Remove from UI
-                    const el = document.querySelector('tr[data-id="' + rowId + '"]');
-                    el.remove();
+                    // Remove from UI                    
+                    row.remove();
 
                 })
                 .catch(error => {
-                    element.innerHTML = `${app.settings.txt.deleteError}: ${error}`;
+                    addToLog(`${app.settings.txt.deleteError}: ${error}`);
                     console.error(`${app.settings.txt.deleteError}`, error);
                 });
         }
 
-        //
+
+
+        // Add to log - write feedback text
+        function addToLog(logTxt) {
+            logEl.innerHTML += `<div>${logTxt}</div>`;
+        }
+
+
+
+
+        // Init
         fetchData();
 
 
@@ -392,18 +477,17 @@
                 // Update row
                 if (el.classList.contains("update-btn")) {
 
-                    row.classList.add('disabled');
+                    //row.classList.add('disabled');
                     updateRow(rowId);
 
-                    setTimeout(function () {
-                        row.classList.remove('disabled')
-                    }, 2000);
+                    //setTimeout(function () {
+                    //    row.classList.remove('disabled')
+                    //}, 2000);
                 }
 
                 // duplicate row
-                // TODO: duplicate row
                 if (el.classList.contains("duplicate-btn")) {
-                    console.warn('TODO duplicate');
+                    duplicateRow(rowId)
                 }
 
                 // Add row
@@ -413,9 +497,7 @@
                 }
 
                 // Delete row
-                // TODO: delete row
-                if (el.classList.contains("delete-btn")) {
-                    ////console.warn('TODO delete');
+                if (el.classList.contains("delete-btn")) {                    
                     deleteRow(rowId);
                 }
             }
